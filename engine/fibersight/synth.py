@@ -12,7 +12,7 @@ import numpy as np
 import tifffile
 from scipy import ndimage as ndi
 from scipy.spatial import cKDTree
-from skimage import io as skio
+from PIL import Image
 
 from .stains import OD
 
@@ -135,7 +135,7 @@ def make_experiment(out_dir, n_per_group=6, mode="fluor", seed=0):
             if mode == "fluor":
                 tifffile.imwrite(out / "images" / f"{name}.tif", img)
             else:
-                skio.imsave(out / "images" / f"{name}.png", img, check_contrast=False)
+                Image.fromarray(img).save(out / "images" / f"{name}.png")
             (out / "truth" / f"{name}.json").write_text(json.dumps(gt))
     if mode == "fluor":
         cfg = ("name: Synthetic demo (fluorescence)\npixel_size_um: 0.65\nmode: fluor\nchannels:\n"

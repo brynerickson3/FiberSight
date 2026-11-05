@@ -4,6 +4,7 @@ import {
   metricDefs, analyze, summarize, welch, fmtP,
 } from './data.js'
 import { renderImage, TYPE_COLOR } from './render.js'
+import Analyze from './Analyze.jsx'
 
 const GROUP_COLORS = ['#2563eb', '#e4572e']
 const cache = new Map() // `${expId}:${idx}` -> generated image
@@ -78,6 +79,7 @@ export default function App() {
         <nav>
           <button className={view.page === 'home' ? 'on' : ''} onClick={() => setView({ page: 'home' })}>Experiments</button>
           <button className={view.page === 'new' ? 'on' : ''} onClick={() => setView({ page: 'new' })}>+ New experiment</button>
+          <button className={'real-nav' + (view.page === 'real' ? ' on' : '')} onClick={() => setView({ page: 'real' })}>Analyze real images</button>
         </nav>
         <div className="side-list">
           {exps.map((e) => (
@@ -86,11 +88,12 @@ export default function App() {
             </button>
           ))}
         </div>
-        <div className="side-foot">Prototype · synthetic images only</div>
+        <div className="side-foot">Demo experiments use synthetic images. "Analyze real images" runs the real engine in your browser.</div>
       </aside>
       <main className="main">
-        {view.page === 'home' && <Home exps={exps} manualMin={manualMin} setManualMin={setManualMin} open={(id) => setView({ page: 'exp', id, tab: 'overview' })} newExp={() => setView({ page: 'new' })} />}
+        {view.page === 'home' && <Home exps={exps} manualMin={manualMin} setManualMin={setManualMin} open={(id) => setView({ page: 'exp', id, tab: 'overview' })} newExp={() => setView({ page: 'new' })} real={() => setView({ page: 'real' })} />}
         {view.page === 'new' && <NewExperiment onCreate={createExp} />}
+        {view.page === 'real' && <Analyze />}
         {exp && (
           <ExperimentView exp={exp} tab={view.tab} setTab={(tab) => setView({ ...view, tab, focus: undefined })}
             focus={view.focus} setFocus={(focus) => setView({ ...view, tab: 'images', focus })}
@@ -112,7 +115,7 @@ function Logo() {
 }
 
 /* ---------------- Home ---------------- */
-function Home({ exps, manualMin, setManualMin, open, newExp }) {
+function Home({ exps, manualMin, setManualMin, open, newExp, real }) {
   const total = exps.reduce((s, e) => s + e.images.length, 0)
   const manualH = (total * manualMin) / 60
   return (
@@ -124,6 +127,10 @@ function Home({ exps, manualMin, setManualMin, open, newExp }) {
         </div>
         <button className="primary" onClick={newExp}>+ New experiment</button>
       </header>
+      <div className="card realcall" onClick={real}>
+        <div><b>Have real images?</b> <span className="muted">Run the actual FiberSight engine on them. It works in your browser, so nothing is uploaded anywhere.</span></div>
+        <button className="primary">Analyze real images →</button>
+      </div>
       <section className="stats">
         <Stat big={total} label="images across all experiments" />
         <Stat big={`${manualH.toFixed(0)} h`} label={<>by hand at <input className="inline" type="number" min="1" value={manualMin} onChange={(e) => setManualMin(Math.max(1, +e.target.value || 1))} /> min / image <span className="tag">your estimate</span></>} />

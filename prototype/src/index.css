@@ -136,3 +136,33 @@ label input, label select { margin-top: 4px; color: var(--ink); }
 .svg { width: 100%; height: auto; display: block; }
 .grid-l { stroke: #eef2f7; }
 .ax { font-size: 10px; fill: #64748b; }
+
+/* ---------------- real analysis page */
+.real-nav { color: #ffd23f !important; font-weight: 600; }
+.realcall { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 14px; cursor: pointer; background: #fffbea; border-color: #f5e3a3; }
+.notice { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.bar .indeterminate { width: 35%; animation: slide 1.4s ease-in-out infinite; }
+@keyframes slide { 0% { margin-left: -35%; } 100% { margin-left: 100%; } }
+.an-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px; align-items: start; }
+.chrow { display: grid; grid-template-columns: 80px 1fr 110px 34px; gap: 8px; align-items: center; margin-bottom: 8px; }
+.chrow .kind { font-size: 12px; }
+button.x { padding: 6px 0; }
+.actions2 { display: flex; gap: 10px; margin-top: 12px; }
+.actions2 button { flex: 1; }
+.measures-list { margin: 6px 0 0; padding-left: 18px; font-size: 14px; }
+.measures-list li { margin-bottom: 4px; }
+.running-real { margin-top: 16px; }
+.running-real h3 { margin: 0; }
+.errorbox { margin-top: 16px; border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+.results { margin-top: 26px; }
+.res-title { font-size: 22px; }
+.scroll { overflow-x: auto; }
+.tbl.mini2 th, .tbl.mini2 td { font-size: 12px; white-space: nowrap; padding: 5px 8px; }
+.md h4 { margin: 16px 0 6px; color: var(--navy); }
+.md ul { margin: 0; padding-left: 20px; }
+.md li { margin-bottom: 4px; font-size: 14px; }
+.md p { margin: 0 0 8px; }
+.overlay-img { width: 100%; border-radius: 10px; margin: 12px 0 6px; display: block; }
+.downloads { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.downloads p { flex-basis: 100%; margin: 6px 0 0; }
+@media (max-width: 1000px) { .an-grid { grid-template-columns: 1fr; } }

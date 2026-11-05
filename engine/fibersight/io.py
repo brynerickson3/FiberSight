@@ -10,7 +10,7 @@ from pathlib import Path
 
 import numpy as np
 import tifffile
-from skimage import io as skio
+from PIL import Image
 
 IMAGE_EXT = {".tif", ".tiff", ".png", ".jpg", ".jpeg", ".czi", ".nd2", ".lif"}
 
@@ -25,7 +25,7 @@ def _read_raw(path: Path) -> np.ndarray:
     if ext in {".tif", ".tiff"}:
         return tifffile.imread(path)
     if ext in {".png", ".jpg", ".jpeg"}:
-        return skio.imread(path)
+        return np.asarray(Image.open(path))
     try:
         from bioio import BioImage  # optional dependency
     except ImportError as e:
