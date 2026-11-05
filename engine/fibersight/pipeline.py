@@ -177,7 +177,10 @@ def analyze_image(path: Path, exp: Experiment) -> ImageData:
 
     gray = seg_input if seg_input.ndim == 2 else seg_input.mean(-1)
     sharp = float(filters.laplace(filters.gaussian(gray, 1.0)).var())
-    return ImageData(path.name, exp.group_of(path.name), exp.animal_of(path.name), labels.astype(np.int32),
+    # keep memory small so 100+ image experiments fit on a free server
+    labels = labels.astype(np.uint16 if labels.max() < 65535 else np.int32)
+    display = (np.clip(display, 0, 1) * 255).astype(np.uint8)
+    return ImageData(path.name, exp.group_of(path.name), exp.animal_of(path.name), labels,
                      fibers, nuclei, area_hist, int(tissue.sum()), sharp, display)
 
 

@@ -154,7 +154,7 @@ def summary_md(exp, img, grp, thresholds) -> str:
 
 
 def overlay(d, exp, path: Path):
-    rgb = (np.clip(d.display, 0, 1) * 255).astype(np.uint8)
+    rgb = d.display if d.display.dtype == np.uint8 else (np.clip(d.display, 0, 1) * 255).astype(np.uint8)
     bound = segmentation.find_boundaries(d.labels, mode="inner")
     out = rgb.copy()
     out[bound] = (255, 230, 0)
