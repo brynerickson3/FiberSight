@@ -1,0 +1,13 @@
+# Pax7 / MyoD satellite-cell staging (immunofluorescence, one multi-channel TIFF per section)
+name: c-subunit leak satellite cells
+pixel_size_um: 0.65          # check your microscope / objective
+mode: fluor
+channels:                    # channel index in the file -> stain
+  0: dapi
+  1: laminin
+  2: pax7
+  3: myod
+groups:                      # first group listed is the reference for % differences
+  Wild-type: "*WT*"
+  c-sub mutant: "*MUT*"
+animal_regex: "_M(\\d+)_"    # pulls the animal ID from file names like WT_M3_s02.tif

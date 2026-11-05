@@ -1,0 +1,13 @@
+# MyHC I / IIa / IIb fiber typing (IIx = negative for all three)
+name: Gastrocnemius fiber typing
+pixel_size_um: 0.65
+mode: fluor
+channels:
+  0: dapi
+  1: laminin
+  2: mhc1
+  3: mhc2a
+  4: mhc2b
+groups:
+  Wild-type: "*WT*"
+  c-sub mutant: "*MUT*"

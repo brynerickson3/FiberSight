@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fibersight"
+version = "0.1.0"
+description = "Automated, stain-agnostic analysis of skeletal muscle histology"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["numpy", "scipy", "scikit-image>=0.21", "pandas", "tifffile", "pyyaml", "pillow"]
+
+[project.optional-dependencies]
+cellpose = ["cellpose>=4"]
+formats = ["bioio", "bioio-czi", "bioio-nd2"]
+dev = ["pytest"]
+
+[project.scripts]
+fibersight = "fibersight.cli:main"
+
+[tool.setuptools]
+packages = ["fibersight"]

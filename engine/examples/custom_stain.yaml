@@ -1,0 +1,16 @@
+# Adding a stain FiberSight doesn't know yet
+name: Capillaries + fibrosis
+pixel_size_um: 0.65
+mode: fluor
+custom_stains:
+  - id: cd31
+    name: CD31
+    kind: area             # membrane | nuclear | marker | fibertype | area | intensity
+channels:
+  0: dapi
+  1: laminin
+  2: cd31
+  3: col1
+groups:
+  Control: "*CTRL*"
+  Injured: "*INJ*"

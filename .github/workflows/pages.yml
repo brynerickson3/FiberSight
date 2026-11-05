@@ -19,12 +19,12 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-        working-directory: fibersight
+        working-directory: prototype
       - run: npm run build
-        working-directory: fibersight
+        working-directory: prototype
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: fibersight/dist
+          path: prototype/dist
       - id: deployment
         uses: actions/deploy-pages@v4

@@ -1,0 +1,11 @@
+# Brightfield IHC: myosin (DAB) + actin (AP Red) + hematoxylin, RGB images
+name: Myosin / actin IHC
+pixel_size_um: 0.5
+mode: bright
+stains: [hema, dab, apred]
+groups:
+  Wild-type: "*WT*"
+  c-sub mutant: "*MUT*"
+# Optional: fix a threshold instead of letting FiberSight choose one (0-1 scale)
+# thresholds:
+#   apred: 0.35

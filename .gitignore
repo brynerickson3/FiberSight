@@ -1,3 +1,9 @@
 node_modules/
 dist/
 .DS_Store
+__pycache__/
+*.egg-info/
+.pytest_cache/
+fibersight_demo/
+fibersight_results/
+demo*/
