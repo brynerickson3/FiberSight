@@ -8,3 +8,4 @@ fibersight_demo/
 fibersight_results/
 demo*/
 .venv/
+build/
